@@ -1,0 +1,38 @@
+### 1. Регистрация пользователя
+POST http://localhost:5000/register
+Content-Type: application/json
+
+{
+    "email": "user@example.com",
+    "password": "securepassword"
+}
+
+### 2. Авторизация пользователя (получение JWT токена)
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "user@example.com",
+    "password": "securepassword"
+}
+
+### 3. Создание объявления (с использованием токена)
+# Сначала скопируйте токен из предыдущего ответа, вставьте его ниже и выполните запрос
+POST http://localhost:5000/ads
+Content-Type: application/json
+Authorization: Bearer <ВАШ_ТОКЕН>
+
+{
+    "title": "Продажа ноутбука",
+    "description": "Новый ноутбук, отличное состояние"
+}
+
+### 4. Получение объявления по ID
+# Убедитесь, что ID объявления совпадает с тем, что было создано (например, ID = 1)
+GET http://localhost:5000/ads/1
+
+### 5. Удаление объявления по ID (только для владельца)
+# Повторно используйте токен для авторизации, скопируйте его ниже
+DELETE http://localhost:5000/ads/1
+Content-Type: application/json
+Authorization: Bearer <ВАШ_ТОКЕН>
